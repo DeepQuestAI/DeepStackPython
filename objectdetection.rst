@@ -69,6 +69,7 @@ Result
     :align: center
 
 **DETECTION SPEED**
+
 DeepStack offers three modes for object detection, the default mode is 
 "LOW" offering good performance at maximum speed, the second mode is "MEDIUM"
 while the third is "HIGH". The HIGH mode is much slower but offers the best 
