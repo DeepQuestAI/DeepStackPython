@@ -76,7 +76,6 @@ while the third is "HIGH". The HIGH mode is much slower but offers the best
 performance. It is able to detect smaller details which the "LOW" and "MEDIUM" 
 modes may failt to detect.
 
-You can specify the mode in the run command for DeepStack has seen below:
+You can specify the mode in the run command for DeepStack has seen below ::
 
-::
     sudo docker run -e MODE=HIGH -v localstorage:/datastore -p 80:5000 deepquestai/deepstack 
