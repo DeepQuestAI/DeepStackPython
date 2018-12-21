@@ -64,6 +64,8 @@ Intel Core i5 processor
 
 Linux or Windows 10 Pro
 
+**NOTE THAT DeepStack is about 2 GB in SIZE**
+
 .. toctree::
    :maxdepth: 2
    :caption: Features:
