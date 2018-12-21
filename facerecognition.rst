@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Face Recognition!
-=====================================
+Face Recognition
+=================
 
 In the Getting Started, we had an overview of the face recognition api. In this section, we shall explore all the functionalities 
 of the api.
@@ -155,8 +155,3 @@ Result ::
 
     unknown
     unknown
-
-
-
-
-FACE LISTING AND FACE DELETION
