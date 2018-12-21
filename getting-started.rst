@@ -18,7 +18,7 @@ operating system to the app dependences. It is similar to virtual machines
 but is more lightweight and easier to manage. 
 
 You can learn more about Docker on `Docker's Website <https://docker.io />`_
-Visit  `Docker Getting Started <https://docker.io />`_ for instructions on setting up and using Docker for the first time.
+Visit  `Docker Getting Started <https://docs.docker.com/get-started />`_ for instructions on setting up and using Docker for the first time.
 
 **Setting Up DeepStack**
 
