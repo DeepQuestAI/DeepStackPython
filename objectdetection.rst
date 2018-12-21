@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Object Detection!
-==================
+Object Detection
+=================
 
 The object detection api locates and classifies 80 different kinds of objects in a single image.
 
