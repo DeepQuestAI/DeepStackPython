@@ -13,7 +13,7 @@ The traffic recognition api classifies an image into one of the following ::
     Fire
 
 With this, from images of live traffic, you can tell if an accident has occured,
-if their is traffic gridlock or if a vehicle is on fire.
+if there is traffic gridlock or if a vehicle is on fire.
 
 
 **Example**
