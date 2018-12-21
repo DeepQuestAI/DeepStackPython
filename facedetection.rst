@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Face Detection!
-==================
+Face Detection
+===============
 
 The face detection api detects faces and returns their coordinates as well as the gender.
 It functions similarly to the face recognition api except that it does not 
