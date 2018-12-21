@@ -12,6 +12,9 @@ The promises of Artificial Intelligence are huge but becoming a machine learning
 engineer is hard. DeepStack runs on the docker platform and can be used from any
 programming language.
 
+You can learn more about Docker on `Docker's Website <https://docker.io />`_
+Visit  `Docker Getting Started <https://docs.docker.com/get-started />`_ for instructions on setting up and using Docker for the first time.
+
 DeepStack is developed by `DeepQuest AI <https://deepquestai.com />`_
 
 .. figure:: image.jpg
