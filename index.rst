@@ -60,13 +60,13 @@ Intel Core i5 processor
 
 8 GB RAM
 
-10 GB Disk Space
+20 GB Disk Space
 
 Linux or Windows 10 Pro
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Features:
 
    getting-started
    facerecognition
@@ -74,12 +74,3 @@ Linux or Windows 10 Pro
    objectdetection
    trafficrecognition
    scenerecognition
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
