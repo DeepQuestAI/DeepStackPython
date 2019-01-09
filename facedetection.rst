@@ -4,12 +4,12 @@
    contain the root `toctree` directive.
 
 Face Detection
-===============
+==============
 
-The face detection api detects faces and returns their coordinates as well as the gender.
-It functions similarly to the face recognition api except that it does not 
+The face detection API detects faces and returns their coordinates as well as the gender.
+It functions similarly to the face recognition API except that it does not 
 perform recognition. 
-Also note that the recognition api does not return gender predictions.
+Also note that the recognition API does not return gender predictions.
 
 **Example**
 

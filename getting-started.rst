@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Getting Started with DeepStack!
+Getting Started with DeepStack
 ===============================
 
 DeepStack is distributed as a docker image. In this tutorial, we shall 
@@ -13,23 +13,49 @@ to build a Face Recognition system.
 **Setting Up Docker** 
 
 Docker is a container platform that allows developers to distribute applications
-as self contained packages that ships every dependency from the
+as self-contained packages that ships every dependency from the
 operating system to the app dependences. It is similar to virtual machines
 but is more lightweight and easier to manage. 
 
 You can learn more about Docker on `Docker's Website <https://docker.io />`_
 Visit  `Docker Getting Started <https://docs.docker.com/get-started />`_ for instructions on setting up and using Docker for the first time.
 
-**Setting Up DeepStack**
+**Installing DeepStack**
 
 DeepStack is an AI Server that provides AI features as APIs consumable via basic web requests.
 It works entirely offline and can be installed anywhere docker runs both on premise and in the cloud.
 
-Run the command below to install and start DeepStack ::
-    
-    docker run -v localstorage:/datastore -p 80:5000 deepquestai/deepstack
+DeepStack is developed and maintained by `DeepQuest AI <https://deepquestai.com />`_
 
-The part "-v localstorage:/datastore" specifies a permanent storage where deepstack will keep registered faces.
+Run the command below to install DeepStack ::
+    
+    docker pull deepquestai/deepstack
+
+To install the GPU Accelerated Version, follow :ref:`gpuinstall`
+
+**Starting DeepStack**
+
+Below we shall run DeepStack with only the FACE features enabled ::
+
+    sudo docker run -e VISION-FACE=True -v localstorage:/datastore -p 80:5000 deepquestai/deepstack
+
+*Basic Parameters*
+
+    **-e VISION-FACE=True** This enables the face recognition APIs, all apis are disabled by default.
+
+    **-v localstorage:/datastore** This specifies the local volume where deepstack will store all data.
+
+    **-p 80:5000** This makes deepstack accessible via port 80 of the machine.
+
+**NOTE FOR THE GPU VERSION**
+
+    If you installed the GPU Version, remmember to add the args args **--rm --runtime=nvidia** 
+    The equivalent run command for the gpu version is ::
+
+        sudo docker run --rm --runtime=nvidia -e VISION-FACE=True -v localstorage:/datastore \
+        -p 80:5000 deepquestai/deepstack:gpu
+    
+
 
 **Face Recognition**
     

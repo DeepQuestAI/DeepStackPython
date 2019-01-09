@@ -6,7 +6,24 @@
 Object Detection
 =================
 
-The object detection api locates and classifies 80 different kinds of objects in a single image.
+The object detection API locates and classifies 80 different kinds of objects in a single image.
+
+To use this API, you need to set **VISION-DETECTION=True** when starting DeepStack ::
+
+    sudo docker run -e VISION-DETECTION=True -v localstorage:/datastore \
+    -p 80:5000 deepquestai/deepstack
+
+If using the GPU Version, run ::
+
+    sudo docker run --rm --runtime=nvidia -e VISION-DETECTION=True -v localstorage:/datastore \
+    -p 80:5000 deepquestai/deepstack:gpu
+
+*Note also that you can have multiple endpoints activated, for example, both face and object detection are activated below* ::
+
+    sudo docker run -e VISION-DETECTION=True  -e VISION-FACE=True -v localstorage:/datastore \
+    -p 80:5000 deepquestai/deepstack
+
+
 
 **Example**
 
@@ -68,14 +85,19 @@ Result
 .. figure:: image2_person.jpg
     :align: center
 
-**DETECTION SPEED**
 
-DeepStack offers three modes for object detection, the default mode is 
-"LOW" offering good performance at maximum speed, the second mode is "MEDIUM"
-while the third is "HIGH". The HIGH mode is much slower but offers the best 
-performance. It is able to detect smaller details which the "LOW" and "MEDIUM" 
-modes may failt to detect.
+**CLASSES**
 
-You can specify the mode in the run command for DeepStack has seen below ::
+The following are the classes of objects DeepStack can detect in images ::
 
-    sudo docker run -e MODE=HIGH -v localstorage:/datastore -p 80:5000 deepquestai/deepstack 
+    person,   bicycle,   car,   motorcycle,   airplane,
+    bus,   train,   truck,   boat,   traffic light,   fire hydrant,   stop_sign,
+    parking meter,   bench,   bird,   cat,   dog,   horse,   sheep,   cow,   elephant,  
+    bear,   zebra, giraffe,   backpack,   umbrella,   handbag,   tie,   suitcase,   
+    frisbee,   skis,   snowboard, sports ball,   kite,   baseball bat,   baseball glove, 
+    skateboard,   surfboard,   tennis racket, bottle,   wine glass,   cup,   fork,   
+    knife,   spoon,   bowl,   banana,   apple,   sandwich,   orange, broccoli,   carrot,   
+    hot dog,   pizza,   donot,   cake,   chair,   couch,   potted plant,   bed, dining table,   
+    toilet,   tv,   laptop,   mouse,   remote,   keyboard,   cell phone,   microwave,
+    oven,   toaster,   sink,   refrigerator,   book,   clock,   vase,   scissors,   teddy bear,
+    hair dryer, toothbrush.
