@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-DeepStack Beta
-===============
+DeepStack Beta - Python
+=======================
 
 DeepStack is an AI server that empowers every developer in the world to 
 easily build state-of-the-art AI systems both on premise and in the cloud.
