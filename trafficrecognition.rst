@@ -54,5 +54,6 @@ If using the GPU Version, run ::
 
 Result ::
 
-    Label: accident
-    {'success': True, 'confidence': 94.88776, 'label': 'accident'}
+    Label accident
+    {'success': True, 'label': 'accident', 'confidence': 0.9488776}
+

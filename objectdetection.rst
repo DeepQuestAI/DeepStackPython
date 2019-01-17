@@ -45,10 +45,10 @@ If using the GPU Version, run ::
 
 Result ::
 
+    person
+    person
     dog
-    person
-    person
-    {'predictions': [{'x_max': 819, 'x_min': 633, 'y_min': 354, 'confidence': 99, 'label': 'dog', 'y_max': 546}, {'x_max': 601, 'x_min': 440, 'y_min': 116, 'confidence': 99, 'label': 'person', 'y_max': 516}, {'x_max': 445, 'x_min': 295, 'y_min': 84, 'confidence': 99, 'label': 'person', 'y_max': 514}], 'success': True}
+    {'predictions': [{'x_max': 450, 'x_min': 294, 'confidence': 0.9999949, 'y_max': 515, 'y_min': 90, 'label': 'person'}, {'x_max': 602, 'x_min': 442, 'confidence': 0.99987614, 'y_max': 524, 'y_min': 120, 'label': 'person'}, {'x_max': 792, 'x_min': 648, 'confidence': 0.99875224, 'y_max': 545, 'y_min': 350, 'label': 'dog'}], 'success': True}
 
 We can use the coordinates returned to extract the objects
 
@@ -85,6 +85,22 @@ Result
 .. figure:: image2_person.jpg
     :align: center
 
+**Setting Confidence Levels**
+
+By default, all objects with a confidence of 0.4 and above are detected. However, you can adjust the confidence level using the
+*min_confidence* parameter.
+
+Example ::
+
+    import requests
+    
+    image_data = open("test-image3.jpg","rb").read()
+    
+    response = requests.post("http://localhost:80/v1/vision/detection",files={"image":image_data},data={"min_confidence":0.6}).json()
+    
+
+In the above, only objects with 60% probability will be detected. If the confidence level is too high, many objects may not be detected,
+if it is too low, it might detect objects that are not present.
 
 **CLASSES**
 

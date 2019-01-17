@@ -29,6 +29,17 @@ Improvements
     * **50% Reduction in Install Size**
 
         The total install size DeepStack is now half the original size.
+
+API Changes
+------------
+
+    * **OBJECT DETECTION - MINIMUM CONFIDENCE**
+
+        By default, all objects with a confidence of 0.4 and above are detected. However, you can adjust the confidence level using the
+        *min_confidence* parameter.
+
+
+        
     
 Breaking Changes
 ----------------
@@ -48,6 +59,11 @@ Breaking Changes
 
             sudo docker run -e VISION-FACE=True -e VISION-SCENE=True -e VISION-TRAFFIC=True \
             -v localstorage:/datastore -p 80:5000 deepquestai/deepstack
+
+    * **CONFIDENCE VALUES**
+
+        All endpoints now return confidence scores in range of 0 - 1. 
+        Previously, some endpoints returned confidence in range of 0 - 100
     
     * **FACE RECOGNITION API-MINIMUM CONFIDENCE**
 
@@ -88,10 +104,12 @@ Breaking Changes
 
         To ::
 
-            {'success': True, 'confidence': 73.73981, 'label': 'conference_room'}
+            {'success': True, 'confidence': 0.7373981, 'label': 'conference_room'}
 
     * **OBJECT DECTION API - SPEED MODES**
 
         Speed Modes have been deprecated.
+
+   
 
 
