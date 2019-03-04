@@ -3,6 +3,58 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+DeepStack Beta 2.0 - Release Notes
+==================================
+
+DeepStack Beta 2.0 features a new face detection engine, significantly improving the face detection and recognition APIS.
+
+Improvements
+-------------
+
+    * **New Face Detection Engine**
+
+        The face detection APIs have been improved to detect faces even when occluded.
+
+    * **Improved Face Recognition**
+
+        The face recognition APIs have been improved significantly. Recognized faces now report confidence over 70%.
+        The default min_confidence is now set to 0.67
+    
+    * **New Face Match API**
+
+        The new :ref:`facematch` API allows you to compute the similarity score on two images containing two faces.
+    
+    * **Speed Modes**
+
+        Speed modes have been introduced to allow you easily tradeoff performance for accuracy.
+
+        There are three speed modes, **"High" , "Medium" and "Low"**
+        
+        You can specify your speed mode has exemplified below. ::
+
+            sudo docker run -e MODE=High -e VISION-DETECTION=True -v localstorage:/datastore \
+            -p 80:5000 deepquestai/deepstack
+
+            Note the -**e MODE=High** above 
+
+    * **Minimum Confidence**
+
+        The "min_confidence" parameter allows you to control the level of confidence of results for :ref:`objectdetection` , :ref:`facedetection` and :ref:`facerecognition`
+
+
+Breaking Changes
+----------------
+
+    * **TRAFFIC API REMOVED**
+
+        The traffic api has been removed, a more improved version maybe re-introduced in future versions of DeepStack.
+        
+    * **GENDER API REMOVED**
+
+        The face detection api no longer return gender information, only bounding boxes are now returned. Gender prediction maybe 
+        re-introduced in future versions of DeepStack..
+
+
 DeepStack Beta - Release Notes
 ==============================
 
@@ -29,17 +81,6 @@ Improvements
     * **50% Reduction in Install Size**
 
         The total install size DeepStack is now half the original size.
-
-API Changes
-------------
-
-    * **OBJECT DETECTION - MINIMUM CONFIDENCE**
-
-        By default, all objects with a confidence of 0.4 and above are detected. However, you can adjust the confidence level using the
-        *min_confidence* parameter.
-
-
-        
     
 Breaking Changes
 ----------------
@@ -59,11 +100,6 @@ Breaking Changes
 
             sudo docker run -e VISION-FACE=True -e VISION-SCENE=True -e VISION-TRAFFIC=True \
             -v localstorage:/datastore -p 80:5000 deepquestai/deepstack
-
-    * **CONFIDENCE VALUES**
-
-        All endpoints now return confidence scores in range of 0 - 1. 
-        Previously, some endpoints returned confidence in range of 0 - 100
     
     * **FACE RECOGNITION API-MINIMUM CONFIDENCE**
 
@@ -104,12 +140,10 @@ Breaking Changes
 
         To ::
 
-            {'success': True, 'confidence': 0.7373981, 'label': 'conference_room'}
+            {'success': True, 'confidence': 73.73981, 'label': 'conference_room'}
 
     * **OBJECT DECTION API - SPEED MODES**
 
         Speed Modes have been deprecated.
-
-   
 
 

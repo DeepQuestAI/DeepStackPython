@@ -3,13 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. _facedetection:
+
 Face Detection
 ==============
 
-The face detection API detects faces and returns their coordinates as well as the gender.
+The face detection API detects faces and returns their coordinates.
 It functions similarly to the face recognition API except that it does not 
 perform recognition. 
-Also note that the recognition API does not return gender predictions.
+
 
 **Example**
 
@@ -24,18 +26,11 @@ Also note that the recognition API does not return gender predictions.
     
     response = requests.post("http://localhost:80/v1/vision/face",files={"image":image_data}).json()
     
-    for person in response["predictions"]:
-        print(person["gender"])
-    
     print(response)
 
 Result ::
 
-    female
-    male
-    male
-    female
-    {'success': True, 'predictions': [{'gender': 'female', 'x_min': 534, 'x_max': 629, 'y_max': 303, 'y_min': 174, 'confidence': 0.99999213}, {'gender': 'male', 'x_min': 616, 'x_max': 711, 'y_max': 275, 'y_min': 146, 'confidence': 0.6611953}, {'gender': 'male', 'x_min': 729, 'x_max': 811, 'y_max': 259, 'y_min': 147, 'confidence': 0.99884146}, {'gender': 'female', 'x_min': 471, 'x_max': 549, 'y_max': 290, 'y_min': 190, 'confidence': 0.99997365}]}
+    {'predictions': [{'x_max': 712, 'y_max': 261, 'x_min': 626, 'confidence': 0.99990666, 'y_min': 145}, {'x_max': 620, 'y_max': 288, 'x_min': 543, 'confidence': 0.99986553, 'y_min': 174}, {'x_max': 810, 'y_max': 242, 'x_min': 731, 'confidence': 0.99986434, 'y_min': 163}, {'x_max': 542, 'y_max': 279, 'x_min': 477, 'confidence': 0.99899536, 'y_min': 197}], 'success': True}
 
 We can use the coordinates returned to extract the faces from the image
 
@@ -51,13 +46,12 @@ We can use the coordinates returned to extract the faces from the image
     i = 0
     for face in response["predictions"]:
         
-        gender = face["gender"]
         y_max = int(face["y_max"])
         y_min = int(face["y_min"])
         x_max = int(face["x_max"])
         x_min = int(face["x_min"])
         cropped = image.crop((x_min,y_min,x_max,y_max))
-        cropped.save("image{}_{}.jpg".format(i,gender))
+        cropped.save("image{}.jpg".format(i))
 
         i += 1
 
@@ -74,3 +68,37 @@ Result
 
 .. figure:: image3_female.jpg
     :align: center
+
+
+**Performance**
+
+DeepStack offers three modes allowing you to tradeoff speed for peformance. 
+During startup, you can specify performance mode to be , **"High" , "Medium" and "Low"**
+
+The default mode is "Medium"
+
+You can speciy a different mode as seen below ::
+
+    sudo docker run -e MODE=High -e VISION-FACE=True -v localstorage:/datastore \
+    -p 80:5000 deepquestai/deepstack
+
+Note the -**e MODE=High** above 
+
+
+**Setting Minimum Confidence**
+
+By default, the minimum confidence for detecting faces is 0.45. The confidence ranges between 0 and 1.
+If the confidence level for a face falls below the min_confidence, no face is detected.
+
+The min_confidence parameter allows you to increase or reduce the minimum confidence.
+
+We lower the confidence allowed below.
+
+Example ::
+
+    import requests
+
+    image_data = open("family.jpg","rb").read()
+
+    response = requests.post("http://localhost:80/v1/vision/face",
+    files={"image":image_data},data={"min_confidence":0.30}).json()

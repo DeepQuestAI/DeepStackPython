@@ -75,11 +75,10 @@ We shall test this on the image below.
 
 Result ::
 
-    unknown
     Idris Elba
-    Full Response:  {'predictions': [{'confidence': 0, 'y_min': 233, 'x_max': 1290, 'x_min': 850,
-    'userid': 'unknown', 'y_max': 827}, {'confidence': 0.6676924, 'y_min': 160, 'x_max': 2041, 
-    'x_min': 1577, 'userid': 'Idris Elba', 'y_max': 767}], 'success': True}
+    unknown
+    Full Response:  {'success': True, 'predictions': [{'x_min': 215, 'confidence': 0.76965684, 'x_max': 264, 'y_max': 91, 'y_min': 20, 'userid': 'Idris Elba'}, {'x_min': 115, 'confidence': 0, 'x_max': 162, 'y_max': 97, 'y_min': 31, 'userid': 'unknown'}]}
+
 
 As you can see above, the first user is unknown since we did not previously register her, however, Idris Elba was detected as we
 registered a picture of his in the previous tutorial.
@@ -119,10 +118,10 @@ Result
     .. figure:: unknown.jpg
         :align: center
 
-**Setting Minimum Confidence**
+**Setting Minimum Confidence** 
 
 DeepStack recognizes faces by computing the similarity between the embedding of a new face and the set of embeddings of previously registered faces.
-By default, the minimum confidence is 0.45. The confidence ranges between 0 and 1.
+By default, the minimum confidence is 0.67. The confidence ranges between 0 and 1.
 If the similarity for a new face falls below the min_confidence, unknown will be returned.
 
 The min_confidence parameter allows you to increase or reduce the minimum confidence.
@@ -136,7 +135,7 @@ Example ::
     image_data = open("test-image2.jpg","rb").read()
 
     response = requests.post("http://localhost:80/v1/vision/face/recognize",
-    files={"image":image_data},data={"min_confidence":0.30}).json()
+    files={"image":image_data},data={"min_confidence":0.40}).json()
     
     for user in response["predictions"]:
         print(user["userid"])
@@ -145,17 +144,15 @@ Example ::
 
 Result ::
 
-    Adele
     Idris Elba
-    Full Response:  {'success': True, 'predictions': [{'confidence': 0.44580227, 'y_min': 233,
-    'y_max': 827, 'userid': 'Adele', 'x_max': 1290, 'x_min': 850}, {'confidence': 0.6676924, 
-    'y_min': 160, 'y_max': 767, 'userid': 'Idris Elba', 'x_max': 2041, 'x_min': 1577}]}
+    Adele
+    Full Response:  {'success': True, 'predictions': [{'userid': 'Idris Elba', 'y_min': 154, 'x_min': 1615, 'x_max': 1983, 'confidence': 0.76965684, 'y_max': 682}, {'userid': 'Adele', 'y_min': 237, 'x_min': 869, 'x_max': 1214, 'confidence': 0.6044803, 'y_max': 732}]}
 
 By reducing the allowed confidence, the system detects the first face as Adele. The lower the confidence, the more likely
 for the system to make mistakes. When the confidence level is high, mistakes are extremely rare, however, the system may 
 return unknown always if the confidence is too high.
 
-**For security related processes such as authentication, set the min_confidence at 0.5 or higher**
+**For security related processes such as authentication, set the min_confidence at 0.7 or higher**
 
 
 
@@ -210,3 +207,18 @@ Result ::
 
     unknown
     unknown
+
+
+**Performance**
+
+DeepStack offers three modes allowing you to tradeoff speed for peformance. 
+During startup, you can specify performance mode to be , **"High" , "Medium" and "Low"**
+
+The default mode is "Medium"
+
+You can speciy a different mode as seen below ::
+
+    sudo docker run -e MODE=High -e VISION-FACE=True -v localstorage:/datastore \
+    -p 80:5000 deepquestai/deepstack
+
+Note the -**e MODE=High** above 

@@ -3,6 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. _home:
+
 DeepStack Beta - Python Guide
 =============================
 
@@ -24,31 +26,52 @@ DeepStack is developed and maintained by `DeepQuest AI <https://deepquestai.com 
 
 Below, using DeepStack we attempt to classify the scene of the above image ::
     
-    import requests
+    const request = require("request")
+    const fs = require("fs")
 
-    image_data = open("image.jpg","rb").read()
+    image_stream = fs.createReadStream("image.jpg")
 
-    response = requests.post("http://localhost:80/v1/vision/scene",files={"image":image_data}).json()
+    var form = {"image":image_stream}
 
-    print(response)
+    request.post({url:"http://localhost:80/v1/vision/scene", formData:form},function(err,res,body){
+
+    response = JSON.parse(body)
+    console.log(response)
+
+    })
 
 **Result**  ::
 
-    {'label': 'highway', 'success': True, 'confidence': 0.63377845}
+    { success: true, label: 'highway', confidence: 63.377846 }
 
 
 You simply send in an image by POST and deepstack returns a JSON response detailing the label of 
 the image as well as the confidence of the prediction on a scale of 0 - 1.
 
 
-**Installing DeepStack**
+Installing DeepStack - CPU Version
+===================================
 
 The code above demonstrates using DeepStack to predict the scene of an image,
 to run this, you can install DeepStack and start it with a single docker command.
 
-If you are not familiar with docker, you can learn how to use Docker here.
+Step 1: Install Docker
+-----------------------
+If you already have docker installed, you can skip this step.
 
-To install DeepStack on Docker, simply run the docker command below ::
+**On Linux** ::
+
+  sudo apt-get update
+  sudo apt-get install curl
+  curl -fsSL get.docker.com -o get-docker.sh && sh get-docker.sh
+
+**On Windows or MacOS** 
+
+  Follow instructions on `Docker Getting Started <https://docs.docker.com/get-started />`_
+
+Step 2: Install DeepStack
+--------------------------
+::
 
     docker pull deepquestai/deepstack
 
@@ -58,7 +81,32 @@ Once installed, you can run DeepStack with the command below ::
 
 The command above runs deepstack with the scene recognition activated, once this is running, you can run the example above.
 
-**GPU Accelerated Version**
+
+Step 3: Activate DeepStack
+---------------------------
+
+The first time you run deepstack, you need to activate it following the process below.
+
+Once you initiate the run command above, visit localhost:80/admin in your browser.
+The interface below will appear.
+
+.. figure:: deepstack_pre.png
+   :align:  center 
+
+You can obtain a free activation key from `https://register.deepstack.cc <https://register.deepstack.cc />`_
+
+Enter your key and click **Activate Now**
+
+The interface below will appear.
+
+
+.. figure:: deepstack_activated.png
+   :align:  center 
+
+This step is only required the first time you run deepstack.
+
+GPU Accelerated Version
+========================
 
 DeepStack runs many times faster on machines with NVIDIA GPUS, to install and use the GPU Version, 
 read :ref:`gpuinstall`
@@ -76,6 +124,10 @@ However, for best performance, the following minimum requirements are highly rec
 
 * Linux or Windows 10 Pro
 
+**NOTE**
+
+DeepStack works best on linux Systems
+
 
 .. toctree::
    :maxdepth: 2
@@ -84,8 +136,8 @@ However, for best performance, the following minimum requirements are highly rec
    getting-started
    facerecognition
    facedetection
+   facematch
    objectdetection
-   trafficrecognition
    scenerecognition
    gpuinstall
    releasenotes

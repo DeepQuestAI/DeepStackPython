@@ -42,6 +42,6 @@ If using the GPU Version, run ::
 
 Result ::
 
-    {'confidence': 0.73739815, 'label': 'conference_room', 'success': True}
-
+    Label: conference_room
+    {'success': True, 'confidence': 73.73981, 'label': 'conference_room'}
 
