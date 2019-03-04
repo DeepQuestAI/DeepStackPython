@@ -26,19 +26,12 @@ DeepStack is developed and maintained by `DeepQuest AI <https://deepquestai.com 
 
 Below, using DeepStack we attempt to classify the scene of the above image ::
     
-    const request = require("request")
-    const fs = require("fs")
-
-    image_stream = fs.createReadStream("image.jpg")
-
-    var form = {"image":image_stream}
-
-    request.post({url:"http://localhost:80/v1/vision/scene", formData:form},function(err,res,body){
-
-    response = JSON.parse(body)
-    console.log(response)
-
-    })
+    import requests
+    
+    image_data = open("test-image5.jpg","rb").read()
+    
+    response = requests.post("http://localhost:80/v1/vision/scene",files={"image":image_data}).json()
+    print(response)
 
 **Result**  ::
 
