@@ -34,7 +34,7 @@ Result ::
     {'message': 'face added', 'success': True}
 
 The response above indicates the call was successful. You should always check for the "success" status.
-If their is an error in your request, you will receive a response like ::
+If there is an error in your request, you will receive a response like ::
 
     {'error': 'user id not specified', 'success': False}
 
