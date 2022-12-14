@@ -48,8 +48,8 @@ If you ommited the image, the response will be ::
 Face Recognition
 -----------------
     
-The face registeration endpoint detects all faces in an image and returns the USERID for each face. Note that the USERID was specified
-during the registeration phase. If a new face is encountered, the USERID will be unknown. 
+The face registration endpoint detects all faces in an image and returns the USERID for each face. Note that the USERID was specified
+during the registration phase. If a new face is encountered, the USERID will be unknown. 
 
 We shall test this on the image below.
 
