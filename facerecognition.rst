@@ -11,12 +11,12 @@ Face Recognition
 In the Getting Started, we had an overview of the face recognition API. In this section, we shall explore all the functionalities 
 of the API.
 
-Face Registeration
+Face Registration
 ------------------
 
-The face registeration endpoint allows you to register pictures of person and associate it with a userid.
+The face registration endpoint allows you to register pictures of person and associate it with a userid.
 
-You can specify multiple pictures per person during registeration.
+You can specify multiple pictures per person during registration.
 
 Example ::
 
@@ -48,8 +48,8 @@ If you ommited the image, the response will be ::
 Face Recognition
 -----------------
     
-The face registeration endpoint detects all faces in an image and returns the USERID for each face. Note that the USERID was specified
-during the registeration phase. If a new face is encountered, the USERID will be unknown. 
+The face registration endpoint detects all faces in an image and returns the USERID for each face. Note that the USERID was specified
+during the registration phase. If a new face is encountered, the USERID will be unknown. 
 
 We shall test this on the image below.
 
