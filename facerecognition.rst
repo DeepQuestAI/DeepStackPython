@@ -16,7 +16,7 @@ Face Registeration
 
 The face registeration endpoint allows you to register pictures of person and associate it with a userid.
 
-You can specify multiple pictures per person during registeration.
+You can specify multiple pictures per person during registration.
 
 Example ::
 
