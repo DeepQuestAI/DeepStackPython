@@ -11,10 +11,10 @@ Face Recognition
 In the Getting Started, we had an overview of the face recognition API. In this section, we shall explore all the functionalities 
 of the API.
 
-Face Registeration
+Face Registration
 ------------------
 
-The face registeration endpoint allows you to register pictures of person and associate it with a userid.
+The face registration endpoint allows you to register pictures of person and associate it with a userid.
 
 You can specify multiple pictures per person during registration.
 
